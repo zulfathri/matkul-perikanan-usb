@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Interaktif - Ekologi Perairan 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333D4B;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 999px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: #38A89D;
+            color: white;
+        }
+        .competency-box {
+            border: 2px solid #E5E7EB;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .competency-box.highlight {
+            border-color: #38A89D;
+            box-shadow: 0 4px 14px 0 rgba(56, 168, 157, 0.2);
+            transform: translateY(-4px);
+        }
+        .week-selector.active {
+            background-color: #38A89D;
+            color: white;
+            font-weight: 600;
+        }
+        .rubric-row:hover {
+            background-color: #F0F9F8;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="navbar" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-gray-800">Ekologi Perairan</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a class="nav-link" data-target="beranda">Beranda</a>
+                    <a class="nav-link" data-target="peta-kompetensi">Peta Kompetensi</a>
+                    <a class="nav-link" data-target="silabus">Silabus Mingguan</a>
+                    <a class="nav-link" data-target="penilaian">Penilaian & Proyek</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <a class="block py-2 px-4 text-sm hover:bg-gray-100" data-target="beranda">Beranda</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-100" data-target="peta-kompetensi">Peta Kompetensi</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-100" data-target="silabus">Silabus Mingguan</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-100" data-target="penilaian">Penilaian & Proyek</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <section id="beranda" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-[#38A89D]">Rencana Pembelajaran Semester (RPS)</h2>
+                <p class="text-xl text-gray-600 mt-2">Ekologi Perairan (JPI031325) - 3 SKS</p>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-500">Selamat datang di laman interaktif RPS Ekologi Perairan, Jurusan Perikanan, Universitas Sulawesi Barat. Laman ini dirancang untuk memberikan gambaran menyeluruh tentang tujuan, materi, alur pembelajaran, dan sistem penilaian mata kuliah. Gunakan navigasi untuk menjelajahi setiap bagian dan memahami bagaimana Anda akan membangun kompetensi di bidang ekologi perairan.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Deskripsi Mata Kuliah</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Mata kuliah ini membahas prinsip-prinsip dasar ekologi yang terjadi di lingkungan perairan. Fokusnya adalah pada interaksi antara komponen biotik (organisme hidup) dan abiotik (faktor fisik-kimia), serta proses-proses fundamental seperti aliran energi dan siklus nutrien. Mahasiswa akan mempelajari berbagai tipe ekosistem, mulai dari perairan tawar, estuaria, hingga laut, dan menganalisis dampak aktivitas manusia serta upaya konservasinya.</p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Capaian Pembelajaran (CPMK)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✔</span>
+                            <span class="text-gray-700">Mampu menganalisis prinsip dasar ekologi, faktor pembatas, dan siklus biogeokimia dalam konteks ekosistem perairan.</span>
+                        </li>
+                        <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✔</span>
+                            <span class="text-gray-700">Mampu mengidentifikasi struktur dan dinamika populasi serta komunitas organisme perairan.</span>
+                        </li>
+                        <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✔</span>
+                            <span class="text-gray-700">Mampu membedakan karakteristik dan proses ekologis pada berbagai tipe ekosistem perairan.</span>
+                        </li>
+                         <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✔</span>
+                            <span class="text-gray-700">Mampu mengevaluasi dampak antropogenik terhadap ekosistem perairan dan merumuskan gagasan konservasi.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                     <h3 class="text-2xl font-semibold mb-4 text-center text-gray-800">Komposisi Penilaian</h3>
+                    <div class="chart-container">
+                        <canvas id="assessmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Dosen Pengampu (<i>Team Teaching</i>)</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h4 class="text-xl font-semibold text-[#38A89D] mb-4">a. Prodi Akuakultur</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>1. Fauzia Nur, S.Pi., M.Si</li>
+                            <li>2. Dewi Yuniati, S.Pi., M.Si</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h4 class="text-xl font-semibold text-[#38A89D] mb-4">b. Prodi Perikanan Tangkap</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>1. Muhammad Nur Ihsan, S.Pi., M.Si</li>
+                            <li>2. Zulfathri Randhi, S.Pi., M.Si</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h4 class="text-xl font-semibold text-[#38A89D] mb-4">c. Prodi Sumber Daya Akuatik</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>1. Andi Arham Atjo, S.Kel., M.Si</li>
+                            <li>2. Rahmat Januar Noor, S.Si., M.Si</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-3xl font-bold text-center text-gray-800 mb-8">Materi Pendukung</h3>
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <a href="https://drive.google.com/file/d/17Mz4m2YRf8hpbjDjDaQwtt9wyS5Jlb8C/view?usp=sharing" target="_blank" rel="noopener noreferrer" 
+                       class="block w-full md:w-auto flex-1 max-w-sm bg-[#38A89D] text-white text-center font-semibold py-4 px-6 rounded-lg shadow-lg hover:bg-[#319287] transition duration-300">
+                        Unduh Modul Mata Kuliah
+                    </a>
+                    <a href="https://drive.google.com/file/d/1a98TPJlc33zsjZcp6Amy6dR7Ab99T6bk/view?usp=sharing" target="_blank" rel="noopener noreferrer" 
+                       class="block w-full md:w-auto flex-1 max-w-sm bg-gray-700 text-white text-center font-semibold py-4 px-6 rounded-lg shadow-lg hover:bg-gray-600 transition duration-300">
+                        Unduh Panduan Praktikum
+                    </a>
+                </div>
+            </div>
+
+            </section>
+
+        <section id="peta-kompetensi" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Peta Kompetensi</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-500">Peta ini memvisualisasikan bagaimana mata kuliah Ekologi Perairan berkontribusi dalam mencapai Capaian Pembelajaran Lulusan (CPL) program studi. Klik pada salah satu elemen untuk melihat keterhubungannya.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">Capaian Pembelajaran Lulusan (CPL)</h3>
+                    <div id="cpl-container" class="flex justify-center gap-4 flex-wrap">
+                        <div class="competency-box cursor-pointer" data-id="cpl1">Menghasilkan SDM dengan kemampuan teoritis & teknis bidang perikanan</div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="text-2xl text-gray-400">↓</div>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
+                    <div id="cpmk-container" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="competency-box cursor-pointer" data-id="cpmk1" data-parent="cpl1">Analisis Prinsip Dasar Ekologi Perairan</div>
+                        <div class="competency-box cursor-pointer" data-id="cpmk2" data-parent="cpl1">Identifikasi Dinamika Populasi & Komunitas</div>
+                        <div class="competency-box cursor-pointer" data-id="cpmk3" data-parent="cpl1">Karakterisasi Ekosistem Perairan</div>
+                        <div class="competency-box cursor-pointer" data-id="cpmk4" data-parent="cpl1">Evaluasi Dampak & Konservasi</div>
+                    </div>
+                </div>
+                
+                 <div class="flex justify-center">
+                    <div class="text-2xl text-gray-400">↓</div>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">Topik Pembelajaran (Sub-CPMK)</h3>
+                     <div id="subcpmk-container" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="competency-box" data-parent="cpmk1">Prinsip & Ruang Lingkup Ekologi</div>
+                        <div class="competency-box" data-parent="cpmk1">Faktor Abiotik & Pembatas</div>
+                        <div class="competency-box" data-parent="cpmk1">Aliran Energi & Produktivitas</div>
+                        <div class="competency-box" data-parent="cpmk1">Siklus Biogeokimia</div>
+                        <div class="competency-box" data-parent="cpmk2">Dinamika Populasi</div>
+                        <div class="competency-box" data-parent="cpmk2">Struktur Komunitas</div>
+                        <div class="competency-box" data-parent="cpmk2">Interaksi Antar Spesies</div>
+                        <div class="competency-box" data-parent="cpmk3">Ekosistem Air Tawar</div>
+                        <div class="competency-box" data-parent="cpmk3">Ekosistem Estuaria & Pesisir</div>
+                        <div class="competency-box" data-parent="cpmk3">Ekosistem Laut</div>
+                        <div class="competency-box" data-parent="cpmk4">Polusi & Eutrofikasi</div>
+                        <div class="competency-box" data-parent="cpmk4">Konservasi & Pengelolaan</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="silabus" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Silabus Interaktif Mingguan</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-500">Pilih minggu di bawah untuk melihat detail topik, metode pembelajaran, dan materi yang akan dibahas. Ini akan membantu Anda mempersiapkan diri untuk setiap pertemuan.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-1/4">
+                    <ul id="week-list" class="space-y-2">
+                    </ul>
+                </div>
+                <div class="w-full md:w-3/4 bg-white p-6 rounded-lg shadow-md">
+                    <h3 id="week-title" class="text-2xl font-bold text-[#38A89D] mb-4"></h3>
+                    <div id="week-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="penilaian" class="scroll-mt-20">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Detail Penilaian & Proyek</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-500">Bagian ini merinci tugas-tugas utama yang akan menjadi dasar penilaian Anda. Perhatikan rubrik untuk memahami kriteria penilaian secara transparan.</p>
+            </div>
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800">Tugas 1: Analisis Studi Kasus Kualitas Air (20%)</h3>
+                    <p class="text-gray-600 mt-2">Mahasiswa menganalisis set data kualitas air dari sebuah studi kasus (misal: danau atau muara sungai), mengidentifikasi potensi masalah (eutrofikasi, polusi), dan menyajikannya dalam bentuk laporan singkat.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800">Proyek Tengah Semester: Laporan Praktikum Virtual (25%)</h3>
+                    <p class="text-gray-600 mt-2">Melalui platform simulasi, mahasiswa melakukan praktikum virtual untuk mengukur parameter ekologis (misal: DO, pH, kelimpahan plankton), menganalisis hasilnya, dan menyusun laporan ilmiah.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800">Proyek Akhir: Desain Rencana Pemantauan Ekosistem (30%)</h3>
+                    <p class="text-gray-600 mt-2">Secara berkelompok, mahasiswa merancang sebuah proposal rencana pemantauan sederhana untuk ekosistem perairan lokal. Proposal mencakup latar belakang, tujuan, parameter yang diukur, metodologi, jadwal, dan estimasi anggaran.</p>
+                    <div class="mt-6">
+                        <h4 class="font-semibold text-gray-700">Rubrik Penilaian Proyek Akhir</h4>
+                        <div class="overflow-x-auto mt-2">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kriteria</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sangat Baik (4)</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Baik (3)</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cukup (2)</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kurang (1)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="rubric-row">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Analisis Masalah</td>
+                                        <td class="px-6 py-4">Identifikasi masalah sangat tajam, relevan, dan didukung data kuat.</td>
+                                        <td class="px-6 py-4">Identifikasi masalah relevan, namun kurang mendalam.</td>
+                                        <td class="px-6 py-4">Masalah diidentifikasi, tapi tidak jelas atau kurang relevan.</td>
+                                        <td class="px-6 py-4">Gagal mengidentifikasi masalah utama.</td>
+                                    </tr>
+                                    <tr class="rubric-row">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Metodologi</td>
+                                        <td class="px-6 py-4">Metodologi sangat sesuai, inovatif, dan dijelaskan secara rinci.</td>
+                                        <td class="px-6 py-4">Metodologi sesuai, namun ada bagian yang kurang detail.</td>
+                                        <td class="px-6 py-4">Metodologi kurang sesuai atau tidak dijelaskan dengan baik.</td>
+                                        <td class="px-6 py-4">Metodologi tidak logis atau tidak ada.</td>
+                                    </tr>
+                                    <tr class="rubric-row">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Kelayakan Rencana</td>
+                                        <td class="px-6 py-4">Rencana sangat realistis (jadwal, anggaran) dan dapat diimplementasikan.</td>
+                                        <td class="px-6 py-4">Rencana cukup realistis, ada beberapa asumsi yang longgar.</td>
+                                        <td class="px-6 py-4">Rencana kurang realistis dan sulit diimplementasikan.</td>
+                                        <td class="px-6 py-4">Rencana tidak realistis.</td>
+                                    </tr>
+                                     <tr class="rubric-row">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Kualitas Laporan</td>
+                                        <td class="px-6 py-4">Laporan profesional, terstruktur, komprehensif, bebas kesalahan.</td>
+                                        <td class="px-6 py-4">Laporan baik dan terstruktur, dengan kesalahan minor.</td>
+                                        <td class="px-6 py-4">Laporan kurang terstruktur, banyak kesalahan.</td>
+                                        <td class="px-6 py-4">Laporan tidak memenuhi format standar.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Jurusan Perikanan, Universitas Sulawesi Barat.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const assessmentData = {
+                labels: ['Partisipasi Kelas', 'Tugas & Studi Kasus', 'Proyek Tengah Semester', 'Proyek Akhir', 'Ujian Akhir Semester'],
+                datasets: [{
+                    label: 'Bobot Penilaian',
+                    data: [10, 20, 25, 30, 15],
+                    backgroundColor: [
+                        '#93C5FD', // Blue
+                        '#6EE7B7', // Green
+                        '#FBBF24', // Amber
+                        '#F87171', // Red
+                        '#A78BFA'  // Violet
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+
+            const assessmentChartCtx = document.getElementById('assessmentChart').getContext('2d');
+            new Chart(assessmentChartCtx, {
+                type: 'doughnut',
+                data: assessmentData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const weeklyData = [
+                { title: "Kontrak & Pengantar Ekologi", content: "<strong>Topik:</strong> Perkenalan, kontrak kuliah, dan pengenalan ruang lingkup ekologi perairan.<br><strong>Metode:</strong> Ceramah interaktif, diskusi.<br><strong>Sub-CPMK:</strong> Memahami kontrak dan gambaran umum mata kuliah." },
+                { title: "Prinsip Dasar Ekologi", content: "<strong>Topik:</strong> Konsep ekosistem, komponen biotik & abiotik, tingkatan organisasi.<br><strong>Metode:</strong> Ceramah, studi gambar.<br><strong>Sub-CPMK:</strong> Menjelaskan prinsip-prinsip dasar ekologi dan komponen ekosistem." },
+                { title: "Faktor Abiotik & Pembatas", content: "<strong>Topik:</strong> Faktor fisika (suhu, cahaya, arus) dan kimia (oksigen, pH, salinitas) sebagai faktor pembatas.<br><strong>Metode:</strong> Diskusi kelompok, problem-based learning.<br><strong>Sub-CPMK:</strong> Menganalisis bagaimana faktor abiotik membatasi sebaran organisme." },
+                { title: "Aliran Energi & Produktivitas", content: "<strong>Topik:</strong> Rantai makanan, jaring-jaring makanan, piramida ekologi, produktivitas primer & sekunder.<br><strong>Metode:</strong> Ceramah, analisis diagram.<br><strong>Sub-CPMK:</strong> Menjelaskan konsep aliran energi dan tingkat produktivitas." },
+                { title: "Siklus Biogeokimia", content: "<strong>Topik:</strong> Siklus Karbon, Nitrogen, dan Fosfor di perairan.<br><strong>Metode:</strong> Presentasi mahasiswa, studi kasus.<br><strong>Sub-CPMK:</strong> Menggambarkan mekanisme utama siklus biogeokimia." },
+                { title: "Dinamika Populasi", content: "<strong>Topik:</strong> Kepadatan, sebaran, angka kelahiran & kematian, kurva pertumbuhan.<br><strong>Metode:</strong> Ceramah, latihan soal sederhana.<br><strong>Sub-CPMK:</strong> Menganalisis parameter dasar dinamika populasi." },
+                { title: "Struktur & Dinamika Komunitas", content: "<strong>Topik:</strong> Keanekaragaman spesies, suksesi ekologis, spesies kunci (keystone species).<br><strong>Metode:</strong> Diskusi, analisis artikel jurnal.<br><strong>Sub-CPMK:</strong> Menjelaskan konsep struktur komunitas dan suksesi." },
+                { title: "UTS", content: "<strong>Kegiatan:</strong> Ujian Tengah Semester.<br><strong>Cakupan:</strong> Materi pertemuan 1-7." },
+                { title: "Interaksi Antar Spesies", content: "<strong>Topik:</strong> Kompetisi, predasi, simbiosis (mutualisme, komensalisme, parasitisme).<br><strong>Metode:</strong> Studi kasus, role-playing.<br><strong>Sub-CPMK:</strong> Memberi contoh dan menjelaskan berbagai tipe interaksi antar spesies." },
+                { title: "Ekosistem Air Tawar", content: "<strong>Topik:</strong> Karakteristik ekosistem lentik (danau, waduk) dan lotik (sungai). Zonasi dan adaptasi organisme.<br><strong>Metode:</strong> Ceramah, virtual tour.<br><strong>Sub-CPMK:</strong> Membedakan karakteristik ekosistem air tawar lentik dan lotik." },
+                { title: "Ekosistem Estuaria & Pesisir", content: "<strong>Topik:</strong> Ekosistem mangrove dan padang lamun. Faktor lingkungan unik dan nilai ekologisnya.<br><strong>Metode:</strong> Studi kasus, analisis video.<br><strong>Sub-CPMK:</strong> Menjelaskan pentingnya ekosistem estuaria sebagai area transisi." },
+                { title: "Ekosistem Laut (1)", content: "<strong>Topik:</strong> Ekosistem terumbu karang: biologi karang, zonasi, ancaman (bleaching).<br><strong>Metode:</strong> Ceramah, analisis data sekunder.<br><strong>Sub-CPMK:</strong> Menganalisis kondisi dan ancaman pada ekosistem terumbu karang." },
+                { title: "Ekosistem Laut (2)", content: "<strong>Topik:</strong> Zona pelagik dan bentik, laut dalam, upwelling.<br><strong>Metode:</strong> Ceramah, pemetaan konsep.<br><strong>Sub-CPMK:</strong> Menggambarkan zonasi utama ekosistem laut." },
+                { title: "Dampak Antropogenik", content: "<strong>Topik:</strong> Polusi (plastik, limbah), eutrofikasi, penangkapan ikan berlebih, perubahan iklim.<br><strong>Metode:</strong> Debat, presentasi kelompok.<br><strong>Sub-CPMK:</strong> Mengevaluasi berbagai dampak aktivitas manusia di perairan." },
+                { title: "Konservasi & Pengelolaan", content: "<strong>Topik:</strong> Konsep konservasi, kawasan konservasi perairan (KKP), restorasi ekosistem, pendekatan ekosistem untuk pengelolaan perikanan.<br><strong>Metode:</strong> Studi kasus, diskusi kebijakan.<br><strong>Sub-CPMK:</strong> Merumuskan gagasan konservasi berbasis ekosistem." },
+                { title: "UAS", content: "<strong>Kegiatan:</strong> Ujian Akhir Semester.<br><strong>Cakupan:</strong> Materi pertemuan 9-15." },
+            ];
+
+            const weekList = document.getElementById('week-list');
+            const weekTitle = document.getElementById('week-title');
+            const weekContent = document.getElementById('week-content');
+
+            weeklyData.forEach((week, index) => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = `Minggu ${index + 1}`;
+                button.className = 'week-selector w-full text-left px-4 py-2 rounded-md transition duration-150';
+                button.dataset.index = index;
+                if (index === 0) {
+                    button.classList.add('active');
+                }
+                li.appendChild(button);
+                weekList.appendChild(li);
+            });
+
+            function updateWeekContent(index) {
+                const data = weeklyData[index];
+                weekTitle.textContent = `Minggu ${parseInt(index) + 1}: ${data.title}`;
+                weekContent.innerHTML = data.content;
+                
+                document.querySelectorAll('.week-selector').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`.week-selector[data-index='${index}']`).classList.add('active');
+            }
+
+            weekList.addEventListener('click', (e) => {
+                if (e.target && e.target.matches('button.week-selector')) {
+                    updateWeekContent(e.target.dataset.index);
+                }
+            });
+            
+            updateWeekContent(0);
+
+            const competencyBoxes = document.querySelectorAll('.competency-box[data-id]');
+            competencyBoxes.forEach(box => {
+                box.addEventListener('click', () => {
+                    const id = box.dataset.id;
+                    const parentId = box.dataset.parent;
+                    
+                    document.querySelectorAll('.competency-box').forEach(b => b.classList.remove('highlight'));
+                    
+                    box.classList.add('highlight');
+                    if (parentId) {
+                        document.querySelector(`.competency-box[data-id='${parentId}']`).classList.add('highlight');
+                    }
+                    document.querySelectorAll(`.competency-box[data-parent='${id}']`).forEach(child => {
+                        child.classList.add('highlight');
+                    });
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+            const sections = document.querySelectorAll('section');
+            const navbar = document.getElementById('navbar');
+            const navHeight = navbar.offsetHeight;
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - navHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                    if(document.getElementById('mobile-menu').classList.contains('hidden') === false) {
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - navHeight - 5) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-target') === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+        });
+    </script>
+</body>
+</html>
