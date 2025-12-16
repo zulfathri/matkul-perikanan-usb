@@ -1,18 +1,164 @@
-[
-  {"minggu":1,"subcpmk":"Memahami ruang lingkup dan konsep dasar Manajemen Operasi Penangkapan Ikan","materi":"Pengantar mata kuliah, ruang lingkup MOPI, konsep POAC dalam operasi penangkapan ikan","metode":"Ceramah interaktif, diskusi","penilaian":"Partisipasi"},
-  {"minggu":2,"subcpmk":"Memahami sistem perikanan tangkap dan komponennya","materi":"Sistem perikanan tangkap, input–proses–output, faktor biofisik dan sosial ekonomi","metode":"Ceramah, diskusi kelompok","penilaian":"Partisipasi"},
-  {"minggu":3,"subcpmk":"Menganalisis klasifikasi unit penangkapan ikan","materi":"Klasifikasi kapal, alat tangkap, dan metode operasi penangkapan","metode":"Studi kasus, penugasan","penilaian":"Tugas individu"},
-  {"minggu":4,"subcpmk":"Memahami kelaikan kapal dan keselamatan kerja di laut","materi":"Kelaikan kapal perikanan, keselamatan kerja (K3), alat keselamatan di laut","metode":"Ceramah, diskusi, studi kasus","penilaian":"Partisipasi"},
-  {"minggu":5,"subcpmk":"Menganalisis perencanaan operasi penangkapan ikan","materi":"Perencanaan trip penangkapan, penentuan fishing ground, waktu operasi","metode":"Ceramah, latihan soal","penilaian":"Tugas individu"},
-  {"minggu":6,"subcpmk":"Menganalisis kebutuhan logistik operasi penangkapan","materi":"Perencanaan BBM, es, air bersih, ransum, dan perbekalan lainnya","metode":"Simulasi perhitungan, diskusi","penilaian":"Tugas individu"},
-  {"minggu":7,"subcpmk":"Menganalisis organisasi dan manajemen ABK","materi":"Pembagian tugas ABK, sistem kerja, dan manajemen SDM di kapal perikanan","metode":"Ceramah, diskusi kelompok","penilaian":"Partisipasi"},
-  {"minggu":8,"subcpmk":"Evaluasi pemahaman konsep MOPI","materi":"Ujian Tengah Semester (UTS)","metode":"Tes tertulis","penilaian":"UTS"},
-  {"minggu":9,"subcpmk":"Menganalisis efisiensi operasi penangkapan ikan","materi":"Konsep efisiensi teknis dan ekonomis dalam operasi penangkapan","metode":"Ceramah, studi kasus","penilaian":"Tugas individu"},
-  {"minggu":10,"subcpmk":"Menganalisis produktivitas hasil tangkapan","materi":"Produktivitas penangkapan (CPUE, C/t), faktor yang memengaruhi","metode":"Latihan analisis data","penilaian":"Tugas individu"},
-  {"minggu":11,"subcpmk":"Menganalisis biaya dan pendapatan usaha penangkapan ikan","materi":"Struktur biaya, penerimaan, dan analisis keuntungan usaha penangkapan","metode":"Ceramah, studi kasus","penilaian":"Tugas individu"},
-  {"minggu":12,"subcpmk":"Menganalisis sistem bagi hasil dalam usaha penangkapan","materi":"Pola bagi hasil nelayan, implikasi ekonomi dan sosial","metode":"Diskusi, studi kasus","penilaian":"Partisipasi"},
-  {"minggu":13,"subcpmk":"Menganalisis permasalahan operasional penangkapan ikan","materi":"Permasalahan teknis, ekonomi, dan lingkungan dalam operasi penangkapan","metode":"Diskusi kelompok","penilaian":"Tugas kelompok"},
-  {"minggu":14,"subcpmk":"Menyusun solusi manajemen operasi penangkapan ikan","materi":"Perumusan alternatif solusi dan rekomendasi manajerial","metode":"Project Based Learning","penilaian":"Proyek akhir"},
-  {"minggu":15,"subcpmk":"Mempresentasikan proyek akhir manajemen operasi penangkapan ikan","materi":"Presentasi dan evaluasi proyek akhir","metode":"Presentasi","penilaian":"Proyek akhir"},
-  {"minggu":16,"subcpmk":"Evaluasi akhir capaian pembelajaran mata kuliah","materi":"Ujian Akhir Semester (UAS)","metode":"Tes tertulis","penilaian":"UAS"}
-]
+{
+  "identitas": {
+    "program_studi": "Perikanan Tangkap",
+    "fakultas": "Fakultas Peternakan dan Perikanan",
+    "universitas": "Universitas Sulawesi Barat",
+    "mata_kuliah": "Manajemen Operasi Penangkapan Ikan",
+    "kode_mk": "PTK-XXX",
+    "sks": 3,
+    "semester": "Ganjil",
+    "dosen_pengampu": "—"
+  },
+
+  "deskripsi": "Mata kuliah ini membahas konsep, prinsip, dan penerapan manajemen dalam operasi penangkapan ikan yang meliputi perencanaan, pelaksanaan, pengendalian, dan evaluasi kegiatan penangkapan ikan secara efektif, efisien, dan berkelanjutan.",
+
+  "cpl_prodi": [
+    "Mampu mengaplikasikan konsep perikanan tangkap secara profesional",
+    "Mampu menganalisis permasalahan operasional perikanan tangkap",
+    "Mampu mengambil keputusan berbasis data dan kondisi lapangan"
+  ],
+
+  "cpmk": [
+    "Memahami konsep dan ruang lingkup manajemen operasi penangkapan ikan",
+    "Menganalisis efisiensi dan produktivitas operasi penangkapan ikan",
+    "Merumuskan solusi manajerial terhadap permasalahan operasi penangkapan ikan"
+  ],
+
+  "bahan_kajian": [
+    "Konsep dasar manajemen operasi penangkapan ikan",
+    "Sistem perikanan tangkap dan komponennya",
+    "Kelaikan kapal dan keselamatan kerja di laut",
+    "Perencanaan dan pengendalian operasi penangkapan ikan",
+    "Efisiensi, produktivitas, dan analisis usaha penangkapan ikan",
+    "Permasalahan dan solusi manajemen operasi penangkapan ikan"
+  ],
+
+  "penilaian": [
+    { "komponen": "Kehadiran dan Partisipasi", "bobot": 10 },
+    { "komponen": "Tugas Individu", "bobot": 20 },
+    { "komponen": "Ujian Tengah Semester (UTS)", "bobot": 25 },
+    { "komponen": "Ujian Akhir Semester / Proyek Akhir", "bobot": 45 }
+  ],
+
+  "rps_mingguan": [
+    {
+      "minggu": 1,
+      "subcpmk": "Memahami ruang lingkup dan kontrak perkuliahan MOPI",
+      "materi": "Pengantar mata kuliah, ruang lingkup MOPI, kontrak perkuliahan",
+      "metode": "Ceramah, diskusi",
+      "penilaian": "Partisipasi"
+    },
+    {
+      "minggu": 2,
+      "subcpmk": "Memahami konsep dasar manajemen operasi penangkapan ikan",
+      "materi": "Konsep POAC dalam operasi penangkapan ikan",
+      "metode": "Ceramah, diskusi",
+      "penilaian": "Partisipasi"
+    },
+    {
+      "minggu": 3,
+      "subcpmk": "Menganalisis sistem perikanan tangkap",
+      "materi": "Sistem perikanan tangkap: input, proses, output",
+      "metode": "Ceramah, diskusi kelompok",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 4,
+      "subcpmk": "Menganalisis klasifikasi unit penangkapan ikan",
+      "materi": "Kapal perikanan, alat tangkap, dan metode operasi",
+      "metode": "Studi kasus",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 5,
+      "subcpmk": "Memahami kelaikan kapal perikanan",
+      "materi": "Kelaikan teknis dan administratif kapal perikanan",
+      "metode": "Ceramah, diskusi",
+      "penilaian": "Partisipasi"
+    },
+    {
+      "minggu": 6,
+      "subcpmk": "Menerapkan prinsip keselamatan kerja di laut",
+      "materi": "Keselamatan kerja (K3), alat keselamatan di kapal",
+      "metode": "Ceramah, studi kasus",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 7,
+      "subcpmk": "Menganalisis perencanaan operasi penangkapan ikan",
+      "materi": "Perencanaan trip, fishing ground, waktu operasi",
+      "metode": "Latihan perencanaan",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 8,
+      "subcpmk": "Evaluasi pemahaman materi awal",
+      "materi": "Ujian Tengah Semester (UTS)",
+      "metode": "Tes tertulis",
+      "penilaian": "UTS"
+    },
+    {
+      "minggu": 9,
+      "subcpmk": "Menganalisis kebutuhan logistik operasi penangkapan",
+      "materi": "Perencanaan BBM, es, air tawar, ransum",
+      "metode": "Simulasi perhitungan",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 10,
+      "subcpmk": "Menganalisis organisasi dan manajemen ABK",
+      "materi": "Pembagian kerja ABK dan manajemen SDM kapal",
+      "metode": "Diskusi kelompok",
+      "penilaian": "Partisipasi"
+    },
+    {
+      "minggu": 11,
+      "subcpmk": "Menganalisis efisiensi operasi penangkapan ikan",
+      "materi": "Efisiensi teknis dan ekonomis operasi penangkapan",
+      "metode": "Studi kasus",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 12,
+      "subcpmk": "Menganalisis produktivitas hasil tangkapan",
+      "materi": "Produktivitas penangkapan (CPUE, C/t)",
+      "metode": "Latihan analisis data",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 13,
+      "subcpmk": "Menganalisis biaya dan pendapatan usaha penangkapan",
+      "materi": "Struktur biaya, penerimaan, dan keuntungan usaha",
+      "metode": "Studi kasus",
+      "penilaian": "Tugas individu"
+    },
+    {
+      "minggu": 14,
+      "subcpmk": "Menganalisis permasalahan operasional penangkapan ikan",
+      "materi": "Permasalahan teknis, ekonomi, dan lingkungan",
+      "metode": "Diskusi kelompok",
+      "penilaian": "Tugas kelompok"
+    },
+    {
+      "minggu": 15,
+      "subcpmk": "Menyusun solusi manajemen operasi penangkapan ikan",
+      "materi": "Perumusan rekomendasi dan presentasi proyek akhir",
+      "metode": "Project Based Learning / Presentasi",
+      "penilaian": "Proyek akhir"
+    },
+    {
+      "minggu": 16,
+      "subcpmk": "Evaluasi akhir capaian pembelajaran",
+      "materi": "Ujian Akhir Semester (UAS)",
+      "metode": "Tes tertulis",
+      "penilaian": "UAS"
+    }
+  ],
+
+  "referensi": [
+    "FAO. 1996. Code of Conduct for Responsible Fisheries. FAO, Rome.",
+    "Sudirman dan Mallawa. 2004. Teknik Penangkapan Ikan. Rineka Cipta.",
+    "Gulland, J.A. 1983. Fish Stock Assessment: A Manual of Basic Methods. FAO.",
+    "Peraturan Menteri Kelautan dan Perikanan Republik Indonesia terkait perikanan tangkap."
+  ]
+}
