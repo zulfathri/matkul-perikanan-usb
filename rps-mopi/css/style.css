@@ -99,3 +99,13 @@ body.asesor .week {
   nav, button { display:none; }
   body { font-size:11pt; }
 }
+
+@media print {
+  body {
+    background: #fff;
+  }
+}
+
+canvas {
+  max-width: 100%;
+}
