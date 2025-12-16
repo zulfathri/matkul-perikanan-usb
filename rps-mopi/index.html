@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RPS Digital – Manajemen Operasi Penangkapan Ikan</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>Rencana Pembelajaran Semester (RPS)</h1>
+  <p>Manajemen Operasi Penangkapan Ikan – Prodi Perikanan Tangkap UNSULBAR</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#rps">RPS Mingguan</a></li>
+    <li><a href="#penilaian">Penilaian</a></li>
+    <li><button onclick="exportPDF()">Export PDF</button></li>
+  </ul>
+</nav>
+
+<main id="content">
+  <section id="rps">
+    <h2>Rancangan Pembelajaran Semester</h2>
+    <div id="rpsTable"></div>
+  </section>
+
+  <section id="penilaian">
+    <h2>Strategi Penilaian</h2>
+    <table>
+      <tr><th>Komponen</th><th>Bobot</th></tr>
+      <tr><td>Kehadiran & Partisipasi</td><td>10%</td></tr>
+      <tr><td>Tugas Individu</td><td>20%</td></tr>
+      <tr><td>UTS</td><td>25%</td></tr>
+      <tr><td>UAS (Proyek Akhir)</td><td>45%</td></tr>
+    </table>
+  </section>
+</main>
+
+<footer>© 2025 Prodi Perikanan Tangkap – Universitas Sulawesi Barat</footer>
+
+<script src="js/render.js"></script>
+<script src="js/export-pdf.js"></script>
+</body>
+</html>
