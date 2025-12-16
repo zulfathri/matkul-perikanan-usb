@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RPS Digital – Manajemen Operasi Penangkapan Ikan</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -16,28 +16,42 @@
 
 <nav>
   <ul>
+    <li><a href="#identitas">Identitas</a></li>
+    <li><a href="#deskripsi">Deskripsi</a></li>
+    <li><a href="#cpl">CPL</a></li>
+    <li><a href="#cpmk">CPMK</a></li>
     <li><a href="#rps">RPS Mingguan</a></li>
-    <li><a href="#penilaian">Penilaian</a></li>
     <li><button onclick="exportPDF()">Export PDF</button></li>
   </ul>
 </nav>
 
 <main id="content">
-  <section id="rps">
-    <h2>Rancangan Pembelajaran Semester</h2>
-    <div id="rpsTable"></div>
-  </section>
 
-  <section id="penilaian">
-    <h2>Strategi Penilaian</h2>
-    <table>
-      <tr><th>Komponen</th><th>Bobot</th></tr>
-      <tr><td>Kehadiran & Partisipasi</td><td>10%</td></tr>
-      <tr><td>Tugas Individu</td><td>20%</td></tr>
-      <tr><td>UTS</td><td>25%</td></tr>
-      <tr><td>UAS (Proyek Akhir)</td><td>45%</td></tr>
-    </table>
-  </section>
+<section id="identitas">
+  <h2>Identitas Mata Kuliah</h2>
+  <table id="identitasContent"></table>
+</section>
+
+<section id="deskripsi">
+  <h2>Deskripsi Mata Kuliah</h2>
+  <p id="deskripsiContent"></p>
+</section>
+
+<section id="cpl">
+  <h2>Capaian Pembelajaran Lulusan (CPL)</h2>
+  <ul id="cplContent"></ul>
+</section>
+
+<section id="cpmk">
+  <h2>Capaian Pembelajaran Mata Kuliah (CPMK)</h2>
+  <ul id="cpmkContent"></ul>
+</section>
+
+<section id="rps">
+  <h2>Rancangan Pembelajaran Semester</h2>
+  <div id="rpsTable"></div>
+</section>
+
 </main>
 
 <footer>© 2025 Prodi Perikanan Tangkap – Universitas Sulawesi Barat</footer>
