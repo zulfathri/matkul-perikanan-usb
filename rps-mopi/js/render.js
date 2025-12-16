@@ -1,61 +1,61 @@
 fetch('data/rps.json')
-  .then(res => res.json())
-  .then(data => {
-    renderIdentitas(data.identitas);
-    renderDeskripsi(data.deskripsi);
-    renderCPL(data.cpl_prodi);
-    renderCPMK(data.cpmk);
-    renderRPS(data.rps_mingguan);
+  .then(r => r.json())
+  .then(d => {
+    renderIdentitas(d.identitas);
+    renderText('deskripsiContent', d.deskripsi);
+    renderList('cplContent', d.cpl_prodi);
+    renderList('cpmkContent', d.cpmk);
+    renderList('bahanContent', d.bahan_kajian);
+    renderRPS(d.rps_mingguan);
+    renderPenilaian(d.penilaian);
+    renderList('referensiContent', d.referensi, true);
   });
 
-function renderIdentitas(id){
-  let html = '';
-  for (const key in id) {
-    html += `<tr><th>${key.replace(/_/g,' ')}</th><td>${id[key]}</td></tr>`;
-  }
-  document.getElementById('identitasContent').innerHTML = html;
+function renderIdentitas(o){
+  document.getElementById('identitasContent').innerHTML =
+    Object.entries(o).map(([k,v]) =>
+      `<tr><th>${k.replace(/_/g,' ')}</th><td>${v}</td></tr>`
+    ).join('');
 }
 
-function renderDeskripsi(text){
-  document.getElementById('deskripsiContent').innerText = text;
+function renderText(id, text){
+  document.getElementById(id).innerText = text;
 }
 
-function renderCPL(cpl){
-  document.getElementById('cplContent').innerHTML =
-    cpl.map(i => `<li>${i}</li>`).join('');
-}
-
-function renderCPMK(cpmk){
-  document.getElementById('cpmkContent').innerHTML =
-    cpmk.map(i => `<li>${i}</li>`).join('');
+function renderList(id, arr, ordered=false){
+  document.getElementById(id).innerHTML =
+    arr.map(i => `<li>${i}</li>`).join('');
 }
 
 function renderRPS(rps){
-  let html = `<table>
-    <thead>
-      <tr><th>Minggu</th><th>Sub-CPMK</th><th>Detail</th></tr>
-    </thead><tbody>`;
-
+  let h = `<table><tr><th>Minggu</th><th>Sub-CPMK</th><th>Detail</th></tr>`;
   rps.forEach((m,i)=>{
-    html += `
+    h += `
       <tr class="week" onclick="toggle(${i})">
-        <td>${m.minggu}</td>
-        <td>${m.subcpmk}</td>
-        <td>Klik untuk detail</td>
+        <td>${m.minggu}</td><td>${m.subcpmk}</td><td>Klik</td>
       </tr>
-      <tr id="detail${i}" class="hidden">
+      <tr id="d${i}" class="hidden">
         <td colspan="3">
-          <strong>Materi:</strong> ${m.materi}<br>
-          <strong>Metode:</strong> ${m.metode}<br>
-          <strong>Penilaian:</strong> ${m.penilaian}
+          <b>Materi:</b> ${m.materi}<br>
+          <b>Metode:</b> ${m.metode}<br>
+          <b>Penilaian:</b> ${m.penilaian}
         </td>
       </tr>`;
   });
+  document.getElementById('rpsTable').innerHTML = h + '</table>';
+}
 
-  html += '</tbody></table>';
-  document.getElementById('rpsTable').innerHTML = html;
+function renderPenilaian(p){
+  document.getElementById('penilaianContent').innerHTML =
+    '<tr><th>Komponen</th><th>Bobot (%)</th></tr>' +
+    p.map(i => `<tr><td>${i.komponen}</td><td>${i.bobot}</td></tr>`).join('');
 }
 
 function toggle(i){
-  document.getElementById('detail'+i).classList.toggle('hidden');
+  document.getElementById('d'+i).classList.toggle('hidden');
+}
+
+function toggleAsesor(){
+  document.body.classList.toggle('asesor');
+  document.querySelectorAll('.hidden').forEach(e=>e.classList.remove('hidden'));
 }
