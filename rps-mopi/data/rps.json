@@ -1,13 +1,13 @@
 {
   "identitas": {
-    "program_studi": "Perikanan Tangkap",
-    "fakultas": "Fakultas Peternakan dan Perikanan",
-    "universitas": "Universitas Sulawesi Barat",
-    "mata_kuliah": "Manajemen Operasi Penangkapan Ikan",
-    "kode_mk": "PTK-XXX",
-    "sks": 3,
-    "semester": "Ganjil",
-    "dosen_pengampu": "Reski Fitriah, S.Pi., M.Si, Zulfathri Randhi, S.Pi., M.Si"
+    "Program_Studi": "Perikanan Tangkap",
+    "Fakultas": "Fakultas Peternakan dan Perikanan",
+    "Universitas": "Universitas Sulawesi Barat",
+    "Mata_Kuliah": "Manajemen Operasi Penangkapan Ikan",
+    "Kode_MK": "PTK-XXX",
+    "SKS": 3,
+    "Semester": "Ganjil",
+    "Dosen_Pengampu": "Reski Fitriah, S.Pi., M.Si, Zulfathri Randhi, S.Pi., M.Si"
   },
 
   "deskripsi": "Mata kuliah ini membahas konsep, prinsip, dan penerapan manajemen dalam operasi penangkapan ikan yang meliputi perencanaan, pelaksanaan, pengendalian, dan evaluasi kegiatan penangkapan ikan secara efektif, efisien, dan berkelanjutan.",
@@ -162,5 +162,6 @@
     "Peraturan Menteri Kelautan dan Perikanan Republik Indonesia terkait perikanan tangkap."
   ]
 }
+
 
 
