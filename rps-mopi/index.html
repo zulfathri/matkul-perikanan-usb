@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPS Digital – Manajemen Operasi Penangkapan Ikan</title>
-  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
 <header>
   <h1>Rencana Pembelajaran Semester (RPS)</h1>
-  <p>Manajemen Operasi Penangkapan Ikan – Prodi Perikanan Tangkap UNSULBAR</p>
+  <p>Manajemen Operasi Penangkapan Ikan – Prodi Perikanan Tangkap</p>
 </header>
 
 <nav>
@@ -20,7 +21,11 @@
     <li><a href="#deskripsi">Deskripsi</a></li>
     <li><a href="#cpl">CPL</a></li>
     <li><a href="#cpmk">CPMK</a></li>
-    <li><a href="#rps">RPS Mingguan</a></li>
+    <li><a href="#bahan">Bahan Kajian</a></li>
+    <li><a href="#rps">RPS</a></li>
+    <li><a href="#penilaian">Penilaian</a></li>
+    <li><a href="#referensi">Referensi</a></li>
+    <li><button onclick="toggleAsesor()">Mode Asesor</button></li>
     <li><button onclick="exportPDF()">Export PDF</button></li>
   </ul>
 </nav>
@@ -47,14 +52,31 @@
   <ul id="cpmkContent"></ul>
 </section>
 
+<section id="bahan">
+  <h2>Bahan Kajian</h2>
+  <ul id="bahanContent"></ul>
+</section>
+
 <section id="rps">
   <h2>Rancangan Pembelajaran Semester</h2>
   <div id="rpsTable"></div>
 </section>
 
+<section id="penilaian">
+  <h2>Matriks Penilaian</h2>
+  <table id="penilaianContent"></table>
+</section>
+
+<section id="referensi">
+  <h2>Referensi</h2>
+  <ol id="referensiContent"></ol>
+</section>
+
 </main>
 
-<footer>© 2025 Prodi Perikanan Tangkap – Universitas Sulawesi Barat</footer>
+<footer>
+  © 2025 Program Studi Perikanan Tangkap – Universitas Sulawesi Barat
+</footer>
 
 <script src="js/render.js"></script>
 <script src="js/export-pdf.js"></script>
