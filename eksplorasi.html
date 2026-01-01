@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Interaktif - Eksplorasi Perikanan Tangkap 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #f3f4f6; }
+        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
+        .sidebar { width: 280px; transition: all 0.3s; }
+        .main-content { margin-left: 280px; transition: all 0.3s; }
+        
+        /* Table Styling for Academic Look */
+        table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        th { background-color: #e5e7eb; color: #1f2937; font-weight: 700; border: 1px solid #d1d5db; padding: 12px 8px; text-align: left; }
+        td { border: 1px solid #d1d5db; padding: 10px 8px; vertical-align: top; }
+        tr:nth-child(even) { background-color: #f9fafb; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); position: fixed; z-index: 50; height: 100vh; }
+            .main-content { margin-left: 0; }
+            .sidebar.active { transform: translateX(0); }
+        }
+
+        /* Print Optimization for BKD Evidence */
+        @media print {
+            .sidebar, .no-print { display: none; }
+            .main-content { margin-left: 0; padding: 0; width: 100%; }
+            body { background-color: white; font-size: 11pt; }
+            .shadow-md, .shadow-lg { box-shadow: none; }
+            .bg-white { background-color: transparent; }
+            a { text-decoration: none; color: black; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+            h2 { border-bottom: 2px solid black; padding-bottom: 5px; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <button onclick="document.querySelector('.sidebar').classList.toggle('active')" class="md:hidden fixed top-4 left-4 z-50 bg-blue-900 text-white p-2 rounded shadow-lg no-print">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="flex min-h-screen">
+        
+        <nav class="sidebar bg-slate-900 text-slate-100 fixed h-full overflow-y-auto shadow-xl">
+            <div class="p-6 border-b border-slate-700 bg-slate-800">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-university text-2xl text-yellow-500"></i>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">UNSULBAR</h1>
+                        <p class="text-xs text-slate-400">Perikanan Tangkap</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Informasi Umum</p>
+                <ul class="space-y-1 text-sm">
+                    <li><a href="#identitas" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-info-circle w-6"></i> Identitas MK</a></li>
+                    <li><a href="#analisis" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-network-wired w-6"></i> Analisis Instruksional</a></li>
+                    <li><a href="#cpmk" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-bullseye w-6"></i> CPL & CPMK</a></li>
+                </ul>
+
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 mt-6">Pelaksanaan</p>
+                <ul class="space-y-1 text-sm">
+                    <li><a href="#mingguan" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-calendar-alt w-6"></i> Rencana Mingguan</a></li>
+                    <li><a href="#tugas" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-tasks w-6"></i> Deskripsi Tugas</a></li>
+                    <li><a href="#rubrik" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-table w-6"></i> Rubrik Penilaian</a></li>
+                </ul>
+
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 mt-6">Administrasi</p>
+                <ul class="space-y-1 text-sm">
+                    <li><a href="#aturan" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-gavel w-6"></i> Tata Tertib</a></li>
+                    <li><a href="#referensi" class="block py-2 px-3 rounded hover:bg-slate-700 transition"><i class="fas fa-book w-6"></i> Daftar Pustaka</a></li>
+                </ul>
+            </div>
+            
+            <div class="p-6 border-t border-slate-700 text-xs text-slate-500 mt-auto">
+                <p>Dokumen RPS 2025</p>
+                <p>Diperbarui: 21 Feb 2025</p>
+            </div>
+        </nav>
+
+        <main class="main-content flex-1 p-8 md:p-12">
+            
+            <header class="mb-10 border-b-4 border-blue-900 pb-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">Rencana Pembelajaran Semester (RPS)</h1>
+                        <h2 class="text-xl text-blue-800 font-semibold mt-1">Mata Kuliah: Eksplorasi Perikanan Tangkap</h2>
+                        <p class="text-gray-600 mt-2">Berbasis Outcome-Based Education (OBE) & Project-Based Learning</p>
+                    </div>
+                    <div class="text-right hidden md:block">
+                        <img src="https://unsulbar.ac.id/wp-content/uploads/2014/10/Unsulbar-Logo-1.png" alt="Logo Unsulbar" class="h-20 opacity-80">
+                    </div>
+                </div>
+            </header>
+
+            <section id="identitas" class="bg-white shadow-md rounded-lg p-6 mb-8 border-l-4 border-blue-600">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">1. Identitas Mata Kuliah</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <table class="w-full text-sm">
+                        <tr>
+                            <td class="font-semibold bg-gray-50 w-1/3">Kode Mata Kuliah</td>
+                            <td>PPT175321</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold bg-gray-50">Rumpun MK</td>
+                            <td>Teknologi Perikanan Tangkap</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold bg-gray-50">Bobot SKS</td>
+                            <td>3 SKS (2 Teori, 1 Praktikum)</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold bg-gray-50">Semester</td>
+                            <td>V (Ganjil)</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <p class="font-semibold bg-gray-50 p-2 border border-b-0">Tim Dosen Pengampu:</p>
+                        <ul class="border p-3 list-disc list-inside text-sm text-gray-700 bg-white">
+                            <li><strong>Zulfathri Randhi, S.Pi., M.Si</strong> (Koordinator)</li>
+                            <li><strong>Muh. Aldhy Hatmar<strong> </li>
+                            <li><strong>Dian Purnamasari Anwar<strong> </li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm">
+                            <strong>Prasyarat:</strong> Oseanografi Perikanan, Daerah Penangkapan Ikan, Pengolahan Data Perikanan.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analisis" class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">2. Deskripsi & Analisis Instruksional</h3>
+                <div class="prose max-w-none text-sm text-gray-700 text-justify">
+                    <p class="mb-3">
+                        Mata kuliah ini berfungsi sebagai mata kuliah <strong>"integrator"</strong> yang ditempatkan pada Semester 5. Mata kuliah ini dirancang untuk memanfaatkan dan menyatukan pengetahuan serta keterampilan yang telah diperoleh mahasiswa dari mata kuliah dasar sebelumnya (Statistika, Ikhtiologi, Oseanografi, SIG).
+                    </p>
+                    <p class="mb-3">
+                        Fokus utama mata kuliah ini adalah metodologi dan aplikasi survei eksplorasi untuk mengidentifikasi dan menguantifikasi potensi sumber daya perikanan tangkap yang belum atau kurang dieksploitasi. Materi mencakup prinsip desain survei ilmiah, penerapan teknologi modern (akustik, pengindraan jauh), metode sampling biologis, analisis data spasial, hingga perencanaan logistik.
+                    </p>
+                    <p>
+                        Pembelajaran berpuncak pada pencapaian keterampilan tingkat tinggi: kemampuan untuk merancang <strong>proposal survei eksplorasi</strong> yang lengkap, ilmiah, dan dapat dipertanggungjawabkan.
+                    </p>
+                </div>
+            </section>
+
+            <section id="cpmk" class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">3. Capaian Pembelajaran (Learning Outcomes)</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold text-blue-800 mb-2">Capaian Pembelajaran Lulusan (CPL) yang Dibebankan:</h4>
+                    <ul class="list-none space-y-2 text-sm">
+                        <li class="flex"><span class="font-bold w-12 text-gray-500">P1</span> <span>Mampu menguasai konsep teoritis teknologi dan manajemen penangkapan ikan yang berkelanjutan.</span></li>
+                        <li class="flex"><span class="font-bold w-12 text-gray-500">KU1</span> <span>Mampu merencanakan dan menerapkan pemikiran logis, kritis, sistematis, dan inovatif.</span></li>
+                        <li class="flex"><span class="font-bold w-12 text-gray-500">KK1</span> <span>Mampu menerapkan IPTEKS dalam menyelesaikan permasalahan bidang perikanan tangkap.</span></li>
+                        <li class="flex"><span class="font-bold w-12 text-gray-500">KK4</span> <span>Mampu melakukan perencanaan, menganalisis data, dan memanfaatkannya untuk pengambilan keputusan.</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-blue-800 mb-2">Capaian Pembelajaran Mata Kuliah (CPMK):</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead>
+                                <tr>
+                                    <th class="w-16">Kode</th>
+                                    <th>Deskripsi Capaian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center font-bold">CPMK 1</td>
+                                    <td>Mampu menjelaskan konsep, prinsip, dan justifikasi ilmiah dari kegiatan eksplorasi perikanan tangkap.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center font-bold">CPMK 2</td>
+                                    <td>Mampu membandingkan dan memilih metodologi survei eksplorasi yang tepat (akustik vs alat tangkap).</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center font-bold">CPMK 3</td>
+                                    <td>Mampu menerapkan teknik dasar analisis data hasil eksplorasi (akustik & biologi) untuk estimasi potensi.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center font-bold">CPMK 4</td>
+                                    <td>Mampu merancang proposal survei eksplorasi perikanan yang komprehensif, logis, dan realistis.</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center font-bold">CPMK 5</td>
+                                    <td>Mampu menunjukkan sikap profesional, etis, dan kolaboratif dalam merencanakan survei.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mingguan" class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">4. Matriks Rencana Pembelajaran Mingguan</h3>
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="w-10">Mg</th>
+                                <th class="w-1/4">Kemampuan Akhir (Sub-CPMK)</th>
+                                <th class="w-1/4">Bahan Kajian (Materi)</th>
+                                <th>Metode & Pengalaman Belajar</th>
+                                <th class="w-16">Bobot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center font-bold">1</td>
+                                <td>Menjelaskan rasionalitas, tujuan, dan sejarah eksplorasi perikanan tangkap.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Definisi & Tujuan Eksplorasi</li>
+                                        <li>Sejarah Ekspedisi (cth: Fridtjof Nansen)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Ceramah Interaktif & Studi Kasus</strong><br>
+                                    <span class="text-xs text-gray-500">Mempelajari keberhasilan/kegagalan ekspedisi masa lalu.</span>
+                                </td>
+                                <td class="text-center">2.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">2</td>
+                                <td>Menjelaskan prinsip-prinsip dasar desain survei ilmiah.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Sampling: Bias vs Presisi</li>
+                                        <li>Tipe Desain: Acak, Sistematis, Stratifikasi</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Diskusi Kelompok</strong><br>
+                                    <span class="text-xs text-gray-500">Membahas cara mengurangi bias survei.</span>
+                                </td>
+                                <td class="text-center">2.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">3</td>
+                                <td>Menerapkan konsep desain survei untuk merancang pola jelajah.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Desain Transek (Paralel vs Zig-zag)</li>
+                                        <li>Alokasi Upaya Sampling</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Praktikum Terbimbing (QGIS)</strong><br>
+                                    <span class="text-xs text-gray-500">Membuat peta area studi & jalur survei.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">4</td>
+                                <td>Menjelaskan prinsip dan aplikasi metode survei akustik.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Prinsip Echosounder & Gelombang Suara</li>
+                                        <li>Target Strength (TS)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Simulasi & Demo</strong><br>
+                                    <span class="text-xs text-gray-500">Video operasi akustik & pengenalan Echogram.</span>
+                                </td>
+                                <td class="text-center">2.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">5</td>
+                                <td>Menjelaskan prinsip metode survei berbasis alat tangkap.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Trawl Survei, Longline, Bubu</li>
+                                        <li>Konsep CPUE (Catch Per Unit Effort)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Studi Kasus (Tugas 1)</strong><br>
+                                    <span class="text-xs text-gray-500">Analisis artikel jurnal survei trawl.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">6-7</td>
+                                <td>Menjelaskan pentingnya Ground-Truthing & Data Oseanografi.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Validasi data akustik dengan tangkapan</li>
+                                        <li>Hubungan Ikan vs Lingkungan (Suhu, Klorofil)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Analisis Data Satelit</strong><br>
+                                    <span class="text-xs text-gray-500">Memprediksi daerah potensi ikan dari peta suhu.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr class="bg-yellow-100">
+                                <td class="text-center font-bold">8</td>
+                                <td colspan="3" class="text-center font-bold text-yellow-800">UJIAN TENGAH SEMESTER (UTS)</td>
+                                <td class="text-center font-bold">20%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">9</td>
+                                <td>Menerapkan teknik dasar pengolahan data hasil tangkapan.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Standardisasi CPUE</li>
+                                        <li>Komposisi Spesies & Struktur Ukuran</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Praktikum (Excel/R)</strong><br>
+                                    <span class="text-xs text-gray-500">Mengolah raw data tangkapan menjadi grafik.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">10</td>
+                                <td>Menerapkan teknik dasar analisis data akustik.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Thresholding (Pemisahan Noise)</li>
+                                        <li>Integrasi Echo (NASC/Sa)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Praktikum (Echoview)</strong><br>
+                                    <span class="text-xs text-gray-500">Scrutinizing data echogram sampel.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">11</td>
+                                <td>Menerapkan SIG untuk visualisasi data eksplorasi.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Pemetaan Distribusi Spasial</li>
+                                        <li>Identifikasi Hotspot</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Praktikum (QGIS)</strong><br>
+                                    <span class="text-xs text-gray-500">Overlay data CPUE/Akustik ke peta.</span>
+                                </td>
+                                <td class="text-center">5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">12</td>
+                                <td>Menjelaskan konsep estimasi biomassa total.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Swept Area Method (Trawl)</li>
+                                        <li>Acoustic Biomass Estimation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Latihan Soal</strong><br>
+                                    <span class="text-xs text-gray-500">Menghitung stok ikan total pada suatu area.</span>
+                                </td>
+                                <td class="text-center">2.5%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">13</td>
+                                <td>Mengidentifikasi komponen perencanaan ekspedisi.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Logistik Kapal & Personil</li>
+                                        <li>Manajemen Risiko & Anggaran</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Brainstorming Proyek Akhir</strong><br>
+                                    <span class="text-xs text-gray-500">Diskusi kelompok merancang ekspedisi.</span>
+                                </td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center font-bold">14-15</td>
+                                <td>Merumuskan proposal survei eksplorasi yang sistematis.</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-xs">
+                                        <li>Penulisan Proposal Ilmiah</li>
+                                        <li>Integrasi Metode, Analisis, & Biaya</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <strong>Workshop & Konsultasi</strong><br>
+                                    <span class="text-xs text-gray-500">Pengerjaan mandiri dengan bimbingan dosen.</span>
+                                </td>
+                                <td class="text-center">-</td>
+                            </tr>
+                             <tr class="bg-blue-100">
+                                <td class="text-center font-bold">16</td>
+                                <td colspan="3" class="text-center font-bold text-blue-900">UJIAN AKHIR SEMESTER (Presentasi Proposal)</td>
+                                <td class="text-center font-bold">40%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="rubrik" class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-6 uppercase border-b pb-2">5. Deskripsi Tugas & Instrumen Penilaian</h3>
+                
+                <div class="mb-8 border border-gray-200 rounded p-4">
+                    <h4 class="font-bold text-lg text-blue-900 mb-2">Tugas 1: Analisis Kritis Studi Kasus Ekspedisi (Individu)</h4>
+                    <p class="text-sm text-gray-600 mb-4">Mahasiswa menganalisis laporan survei bersejarah (misal: EAF-Nansen) atau jurnal survei modern.</p>
+                    
+                    <h5 class="font-bold text-sm mb-2">Rubrik Penilaian Tugas 1:</h5>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/4">Kriteria</th>
+                                    <th class="w-12">Bobot</th>
+                                    <th>Sangat Baik (9-10)</th>
+                                    <th>Baik (7-8)</th>
+                                    <th>Cukup (5-6)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Pemahaman Konteks</strong></td>
+                                    <td class="text-center">25%</td>
+                                    <td>Menjelaskan latar belakang & tujuan survei dengan sangat jelas, mendalam, dan akurat.</td>
+                                    <td>Menjelaskan latar belakang dengan cukup jelas dan akurat.</td>
+                                    <td>Penjelasan kurang lengkap atau kurang akurat.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Analisis Metodologi</strong></td>
+                                    <td class="text-center">35%</td>
+                                    <td>Analisis sangat detail tentang desain survei & alat yang digunakan.</td>
+                                    <td>Analisis baik namun beberapa detail teknis kurang.</td>
+                                    <td>Analisis bersifat deskriptif tanpa pendalaman.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Refleksi Kritis</strong></td>
+                                    <td class="text-center">25%</td>
+                                    <td>Memberikan kritik tajam tentang kelebihan/kekurangan survei.</td>
+                                    <td>Refleksi baik namun kurang kritis.</td>
+                                    <td>Refleksi bersifat umum.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded p-4 border-l-4 border-l-blue-600">
+                    <h4 class="font-bold text-lg text-blue-900 mb-2">Proyek Akhir: Perancangan Proposal Survei (PtBL)</h4>
+                    <p class="text-sm text-gray-600 mb-4"><strong>Skenario:</strong> Tim Konsultan merancang survei untuk "Estimasi Biomassa Demersal di Laut Arafura" atau topik serupa.</p>
+                    
+                    <h5 class="font-bold text-sm mb-2">Rubrik Penilaian Proyek Akhir (UAS):</h5>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/4">Komponen</th>
+                                    <th class="w-12">Bobot</th>
+                                    <th>Indikator Capaian Utama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Justifikasi & Tujuan</strong></td>
+                                    <td class="text-center">20%</td>
+                                    <td>Latar belakang kuat, hipotesis terukur, urgensi survei jelas.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Metodologi Survei</strong></td>
+                                    <td class="text-center">30%</td>
+                                    <td>Desain transek optimal, pemilihan alat (akustik/trawl) tepat sesuai target, protokol sampling valid.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rencana Analisis Data</strong></td>
+                                    <td class="text-center">20%</td>
+                                    <td>Alur kerja analisis data (raw to result) logis dan sistematis.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Realibilitas & Logistik</strong></td>
+                                    <td class="text-center">15%</td>
+                                    <td>Anggaran realistis, manajemen risiko diperhitungkan, timeline masuk akal.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Presentasi & Tim</strong></td>
+                                    <td class="text-center">15%</td>
+                                    <td>Penyampaian meyakinkan, media visual menarik, kolaborasi tim terlihat.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aturan" class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">6. Tata Tertib Perkuliahan</h3>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                    <li><strong>Kehadiran:</strong> Minimum 80% tatap muka sebagai syarat mengikuti Ujian Akhir Semester.</li>
+                    <li><strong>Keterlambatan:</strong> Toleransi keterlambatan maksimal 15 menit.</li>
+                    <li><strong>Tugas:</strong> Wajib diserahkan tepat waktu sesuai tenggat yang ada di LMS.</li>
+                    <li><strong>Integritas:</strong> Plagiarisme dan kecurangan akademik tidak ditoleransi (Nilai E otomatis).</li>
+                    <li><strong>Etika:</strong> Berpakaian rapi, sopan, dan menjaga kondusivitas kelas/lab.</li>
+                </ul>
+            </section>
+
+            <section id="referensi" class="bg-white shadow-md rounded-lg p-6 mb-12">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 uppercase border-b pb-2">7. Daftar Pustaka</h3>
+                <div class="text-sm text-gray-700 space-y-3">
+                    <p class="font-bold">Utama:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>Simmonds, E. J., & MacLennan, D. N. (2005). <em>Fisheries Acoustics: Theory and Practice.</em> 2nd Edition. Blackwell Science.</li>
+                        <li>Gunderson, D. R. (1993). <em>Surveys of Fisheries Resources.</em> John Wiley & Sons.</li>
+                        <li>Cochran, W. G. (1977). <em>Sampling Techniques.</em> 3rd Edition. John Wiley & Sons.</li>
+                        <li>Cadima, E. L. (2003). <em>Fish Stock Assessment Manual.</em> FAO Fisheries Technical Paper. No. 393. Rome, FAO.</li>
+                    </ul>
+                    <p class="font-bold mt-4">Pendukung:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>ICES. (2012). <em>Manual for the International Bottom Trawl Surveys.</em> Series of ICES Survey Protocols.</li>
+                        <li>Artikel jurnal relevan dari <em>ICES Journal of Marine Science</em> dan <em>Fisheries Research</em>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <footer class="mt-10 border-t pt-4 text-center text-xs text-gray-500">
+                <p>Dokumen ini dibuat secara digital untuk Mata Kuliah Eksplorasi Perikanan Tangkap - Program Studi Perikanan Tangkap UNSULBAR.</p>
+                <p>&copy; 2025 Zulfathri Randhi.</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
