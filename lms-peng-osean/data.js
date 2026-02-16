@@ -1,7 +1,7 @@
 // --- KONFIGURASI LINK UTAMA ---
 const mainLinks = {
-    rps: "MASUKKAN_LINK_GDRIVE_RPS_DISINI", // Link File PDF RPS
-    modul: "MASUKKAN_LINK_GDRIVE_MODUL_DISINI", // Link File PDF Modul
+    rps: "https://drive.google.com/file/d/1Dti-Lw7XYI3e-8h0Yd3mUMbewbAMDGtX/view?usp=sharing", // Link File PDF RPS
+    modul: "https://drive.google.com/file/d/1zo750XBI0eDWM7q0nDSH7l8RJlcZZWOd/view?usp=sharing", // Link File PDF Modul
     kontrak: "MASUKKAN_LINK_GDRIVE_KONTRAK_DISINI", // Link File Kontrak
     uploadTugas: "MASUKKAN_LINK_GOOGLE_FORM_PENGUMPULAN_TUGAS" // Link Google Form
 };
@@ -159,4 +159,5 @@ const practicums = [
         status: "Upcoming",
         reportLink: "#"
     }
+
 ];
